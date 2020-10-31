@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AgmCoreModule } from '@agm/core';
-import { environment } from './../environments/environment';
+
 import { AppComponent } from './app.component';
 import { AgmExampleComponent } from './agm-example/agm-example.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,7 +15,7 @@ import {MatButtonModule, MatListModule, MatCardModule, MatChipsModule} from '@an
   imports: [
     BrowserModule,
     AgmCoreModule.forRoot({
-      apiKey: environment.maps_api_key,
+      apiKey: 'AIzaSyCY-jkATebGx04JkkIm3nFezrGCMlWrIhg',
       libraries: ['places', 'drawing', 'geometry']
     }),
     BrowserAnimationsModule,

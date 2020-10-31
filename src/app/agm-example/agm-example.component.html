@@ -1,5 +1,7 @@
 <div class="agm-container">
+<!--
   <h3>Angular Google Maps Example</h3>
+-->
   <agm-map
     [zoom]="5"
     [latitude]="lat"
@@ -7,12 +9,16 @@
     (mapReady)="onMapReady($event)"
   >
   </agm-map>
+
+
   <br />
   <div *ngIf="pointList.length>0" class="display-flex">
     <button mat-stroked-button color="warn" (click)="deleteSelectedShape()">Clear</button>
   </div>
 
-  <mat-list role="list">
+
+
+    <mat-list role="list">
     <mat-list-item role="listitem" *ngFor="let point of pointList">
       {{ point.lat.toPrecision(5) }},
       {{ point.lng.toPrecision(5) }}</mat-list-item
