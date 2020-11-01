@@ -8,21 +8,63 @@ declare const google: any;
   styleUrls: ['./agm-example.component.css'],
 })
 export class AgmExampleComponent implements OnInit {
-  lat = 20.5937;
-  lng = 78.9629;
+
+
+  lat = 55.62931516;
+  lng = 37.50899053;
   pointList: { lat: number; lng: number }[] = [];
   drawingManager: any;
   selectedShape: any;
   selectedArea = 0;
+  private extern: any;
 
   constructor() {}
 
+  // tslint:disable-next-line:variable-name
+  // @ts-ignore
+  // tslint:disable-next-line:variable-name max-line-length
+    const triangleCoords: ({ lng: number; lat: number } | { lng: number; lat: number } | { lng: number; lat: number } | { lng: number; lat: number })[] = [
+/*
+    55.62796445, 37.50761724
+    55.62881244, 37.50786400
+    55.62963618, 37.50901199
+    55.63011467, 37.51015998
+
+    55.63024186, 37.51096464
+    55.63001170, 37.51110411
+    55.62953927, 37.50999904
+    55.62827336, 37.50863648
+
+   */
+
+    { lat: 55.62796445, lng: 37.50761724 },
+    { lat: 55.62881244, lng: 37.50786400 },
+    { lat: 55.62963618, lng: 37.50901199},
+    { lat: 55.63011467, lng: 37.51015998},
+
+    { lat: 55.63024186, lng:  37.51096464},
+    { lat: 55.63024186, lng:  37.51110411},
+    { lat: 55.62953927, lng:  37.50999904},
+    { lat: 55.62827336, lng:  37.50863648}
+  ];
+
   ngOnInit() {
     this.setCurrentPosition();
+    // tslint:disable-next-line:prefer-const
   }
 
   onMapReady(map) {
     this.initDrawingManager(map);
+    // Construct the polygon.
+    const bermudaTriangle = new google.maps.Polygon({
+      paths: this.triangleCoords,
+      strokeColor: '#264072',
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: '#387BFE',
+      fillOpacity: 0.40,
+    });
+    bermudaTriangle.setMap(map);
   }
 
   initDrawingManager = (map: any) => {
@@ -34,7 +76,7 @@ export class AgmExampleComponent implements OnInit {
       },
       polygonOptions: {
         draggable: true,
-        editable: true,
+        editable: false,
       },
       drawingMode: google.maps.drawing.OverlayType.POLYGON,
     };
@@ -89,8 +131,8 @@ export class AgmExampleComponent implements OnInit {
   private setCurrentPosition() {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
-        this.lat = position.coords.latitude;
-        this.lng = position.coords.longitude;
+        //this.lat = position.coords.latitude;
+        //this.lng = position.coords.longitude;
       });
     }
   }
